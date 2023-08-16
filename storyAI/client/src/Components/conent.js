@@ -1,6 +1,7 @@
 import '../App.css';
 import { Grid } from '@mui/material';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Content(){
     const [conCount] = useState([1,2,3]);
@@ -13,7 +14,9 @@ function Content(){
                     conCount.map((item,index)=>{
                         return(
                             <Grid item xs={4} key={index} style={{textAlign: 'center'}}>
-                                <img src={`/img/contentImg${item}.png`} style={{width: '80%'}}/>
+                                <NavLink to={'/game'}>
+                                    <img src={`/img/contentImg${item}.png`} style={{width: '80%'}}/>
+                                </NavLink>
                             </Grid>
                         );
                     })

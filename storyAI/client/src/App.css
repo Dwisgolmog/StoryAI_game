@@ -2,6 +2,9 @@ body{
   margin: 0;
   padding: 0;
 }
+.bgColor{
+  background-color: rgb(240, 240, 240);
+}
 .navBar{
   margin: 2%;
   text-align: center;
