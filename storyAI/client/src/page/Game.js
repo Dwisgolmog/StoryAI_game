@@ -2,7 +2,8 @@ import { Container, padding } from "@mui/system";
 import { Box } from "@mui/system";
 import { Grid } from "@mui/material";
 import { Button,createTheme,ThemeProvider } from "@mui/material";
-
+import axios from "axios";
+import { useEffect,useState } from "react";
 
 let theme = createTheme({});
 
@@ -18,6 +19,19 @@ theme = createTheme(theme, {
   });
 
 function Game(){
+
+    const[data,setData] = useState();
+
+    useEffect(()=>{
+        axios.get('/server/kogpt')
+        .then(result=>{
+            console.log('axios 결과값:'+result.data);
+            setData(result.data);
+        }).catch(e=>{
+            console.log('axios 에러낫어욤!!:'+e);
+        })
+    },[])
+
     return(
         <>
             <ThemeProvider theme={theme}>
@@ -30,12 +44,14 @@ function Game(){
                             border:'2px solid gray',
                             p:2
                             }} >
-                                {/* 채팅 더미 수정 요망 */}
+                                {
+                                    
+                                }
                                 <p>
                                     진행자:좀비 아포칼립스에 오신걸 환영합니다.
                                 </p>
                                 <p>
-                                    유저:반가워 난 지금 어디에 있는거지?
+                                    Data: {data}
                                 </p>
 
                             </Box>
