@@ -27,9 +27,12 @@ const data = {
     
   };
 
-app.listen(8080,function(){
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb+srv://dnwn3027:suwon1234@stone.jf0hj90.mongodb.net/?retryWrites=true&w=majority',function(err,client){
+  app.listen(8080,function(){
     console.log('listening on 8080');
 });
+})
     
 app.use(express.static(path.join(__dirname,'client/build')));
 
