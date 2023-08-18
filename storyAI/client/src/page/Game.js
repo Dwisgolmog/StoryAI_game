@@ -22,13 +22,14 @@ function Game(){
 
     const[data,setData] = useState();
 
+    // /server/kogpt 라는 주소에 get 요청을 하여 kogpt의 답변을 가져옴
     useEffect(()=>{
-        axios.get('/server/kogpt')
+        axios.get('http://localhost:8080/server/kogpt')
         .then(result=>{
-            console.log('axios 결과값:'+result.data);
-            setData(result.data);
+            console.log('axios 결과값:'+result.data.generations[0].text);
+            setData(result.data.generations[0].text);
         }).catch(e=>{
-            console.log('axios 에러낫어욤!!:'+e);
+            console.log('axios 에러발생!!:'+e);
         })
     },[])
 
