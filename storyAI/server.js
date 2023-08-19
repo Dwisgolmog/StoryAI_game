@@ -9,24 +9,6 @@ app.use(cors());
 
 const path = require('path');
 
-// kogpt 요청을 위한 url 및 헤더
-const key = '02ddd9213ee08df61abfeca6fc7e6767';
-const url = "https://api.kakaobrain.com/v1/inference/kogpt/generation";
-const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `KakaoAK ${key}`
-};
-
-// 데이터 더미
-const data = {
-    prompt: "오늘 아침 하늘은 곧 비가 올 것 같아서",
-    max_tokens: 150,
-    temperature: 1.0,
-    top_p: 0.7,
-    n: 1
-    
-  };
-
 // MongoDB 연동
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://dnwn3027:suwon1234@stone.jf0hj90.mongodb.net/?retryWrites=true&w=majority',function(err,client){
@@ -66,27 +48,6 @@ app.get('/',function(req,res){
     res.sendFile(path.join(__dirname,'client/build/index.html'));
 })
 
-// axios로 kogpt에 get 요청을 하여 데이터를  받아옴
-app.get('/server/kogpt', function (req, res) {
-    console.log('running api');
-    try {
-      axios.post(url, data, { headers })
-        .then(response => {
-          console.log('요청 성공!');
-          console.log('Response:', response.data);
-  
-          res.send(response.data);
-        })
-        .catch(error => {
-          console.error(`서버 axios 에러: ${error}`);
-          res.status(500).send('서버 axios 에러');
-        });
-    } catch (error) {
-      console.error(`서버 try문 에러: ${error}`);
-      res.status(500).send('서버 try문 에러');
-    }
-  });
-
 // Papago API 호출
 app.get('/server/translate', function (req, res) {
   console.log('연동되었습니다')
@@ -100,6 +61,65 @@ app.get('/server/translate', function (req, res) {
       console.error('Error during translation:', error);
       res.status(500).send('Error during translation');
     });
+});
+
+
+//chat gpt key 
+// const gptKeyValue = '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';
+
+// // gpt 연결
+// const OpenAI = require('openai');
+
+// const openai = new OpenAI({
+//   apiKey: gptKeyValue
+// });
+
+// openai.chat.completions.create({
+//   model: "gpt-3.5-turbo",
+//   messages: [
+//     {
+//       "role": "system",
+//       "content": "당신은 도움이되는 조수입니다."
+//     },
+//     {
+//       "role": "user",
+//       "content": ""
+//     }
+//   ],
+//   temperature: 1,
+//   max_tokens: 256,
+//   top_p: 1,
+//   frequency_penalty: 0,
+//   presence_penalty: 0,
+// })
+// .then(chatCompletion => {
+//   console.log(chatCompletion.choices[0].message);
+// })
+// .catch(error => {
+//   console.error(error);
+// });
+
+
+
+// axios로 chatgpt에 get 요청을 하여 데이터를  받아옴
+app.get('/server/kogpt', function (req, res) {
+  console.log('running api');
+  try {
+    axios.post(url, gptData, { headers })
+      .then(response => {
+        console.log('요청 성공!');
+        console.log('Response:', response.data);
+
+        res.send(response.data);
+      })
+      .catch(error => {
+        console.error(`서버 axios 에러: ${error}`);
+        res.status(500).send('서버 axios 에러');
+      });
+  } catch (error) {
+    console.error(`서버 try문 에러: ${error}`);
+    res.status(500).send('서버 try문 에러');
+  }
 });
 
 app.get('*',function(req,res){
