@@ -34,6 +34,8 @@ MongoClient.connect('mongodb+srv://dnwn3027:suwon1234@stone.jf0hj90.mongodb.net/
     console.log('listening on 8080');
   });
 })
+
+
 // 파파고 API 연동
 const clientId = 'exJJisjHTM4Hro9BlAc8';
 const clientSecret = 'EoC1NjPiy3';
