@@ -41,7 +41,6 @@ const data2 = new URLSearchParams();
 data2.append('source', sourceLang);
 data2.append('target', targetLang);
 
-
     
 app.use(express.static(path.join(__dirname,'client/build')));
 
@@ -54,7 +53,7 @@ app.get('/',function(req,res){
 // Papago API 호출
 app.post('/server/translate', function (req, res) {
   console.log('연동되었습니다') 
-  data2.append('text','hello world' );
+  data2.append('text',req.body.textToTranslate ); //프론트에서 보낸 영어데이터
   axios.post(apiUrl, data2, { headers: headers2 })
     .then(response => {
       const translatedText = response.data.message.result.translatedText;
@@ -79,11 +78,10 @@ const chatMessages = [{
   "role": "user",
   "content": ""
 },
-
 ];
 
 //chat gpt key 
-const gptKeyValue = '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';
+const gptKeyValue = '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';
 
 // gpt 연결
 const OpenAI = require('openai');
