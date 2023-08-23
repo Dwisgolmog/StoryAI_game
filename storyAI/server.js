@@ -9,9 +9,20 @@ app.use(cors());
 
 const path = require('path');
 
+app.set('view engine','ejs');//ejs 사용 셋팅
+
 // MongoDB 연동
 const MongoClient = require('mongodb').MongoClient;
+var db;
 MongoClient.connect('mongodb+srv://dnwn3027:suwon1234@stone.jf0hj90.mongodb.net/?retryWrites=true&w=majority',function(err,client){
+  if(err) return console.log(err)
+  //MongoDB의 StoryAI DB연결
+  db=client.db('StoryAI');
+  // chat이라는 컬렉션에 data 넣기
+  // db.collection('chat').insertOne({chatMessages},function(err, result){
+  //   console.log('DB에 저장됨')
+  // });
+
   app.listen(8080,function(){
     console.log('listening on 8080');
   });
@@ -81,7 +92,7 @@ const chatMessages = [{
 ];
 
 //chat gpt key 
-const gptKeyValue = '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';
+const gptKeyValue = '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';
 
 // gpt 연결
 const OpenAI = require('openai');
@@ -111,11 +122,11 @@ app.get('/server/gpt',function(req,res){
   });
   
 })
+// get 요청할때 파일 렌더링이 안되서 주석 처리해놓음
+// app.get('*',function(req,res){
+//     res.sendFile(path.join(__dirname,'client/build/index.html'));
 
-app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'client/build/index.html'));
-
-})
+// })
 
 //Game.js에서 post 요청시 input 박스안에 있는 값(답변)을 chatMessages에 저장함
 app.post('/server/gpt/send',function(req,res){
@@ -128,3 +139,37 @@ app.post('/server/gpt/send',function(req,res){
   console.log('chatMessages=====================\n'+JSON.stringify(chatMessages)+"\n\n");
   res.sendStatus(200)
 })
+
+
+//db 확인하기
+app.get('/db', function(req, res) {
+  console.log('db에 저장된 값입니다'); // 서버 콘솔에 메시지 출력
+  
+  // MongoDB에서 'chat' 컬렉션의 모든 데이터 조회
+  db.collection('chat').find().toArray(function(err, result) {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Internal Server Error'); // 오류 처리
+    }
+    
+    // 가져온 데이터로부터 _id, roles, contents 추출하여 배열 생성
+    const extractedData = result.map(entry => ({
+      _id: entry._id,
+      roles: entry.chatMessages.map(message => message.role),
+      contents: entry.chatMessages.map(message => message.content)
+    }));
+    
+    // 각 result 엔트리에 extractedData 추가
+    for (let i = 0; i < result.length; i++) {
+      result[i].extractedData = extractedData[i];
+    }
+    
+    console.log("Extracted Data:", extractedData); // 추출한 데이터 콘솔 출력
+    
+    // 뷰 템플릿 'db.ejs'에 결과 데이터를 렌더링하여 전달
+    res.render('db.ejs', { db: result });
+  });
+});
+
+
+
