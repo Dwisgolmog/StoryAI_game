@@ -34,28 +34,28 @@ function Game(){
             let copy = [...result.data];
             console.log("copy:"+JSON.stringify(copy));
             setData(copy);
-            setTranslate(JSON.stringify(copy)); //번역된 내용을 저장할 변수
+            //setTranslate(JSON.stringify(copy)); //번역된 내용을 저장할 변수
         }).catch(e=>{
             console.log('axios 에러발생!!:'+e);
         })
     },[reload])
 
     // data값의 변동(응답 받음)이 발생하면 translate값을 papgo api에게 post 요청하여 보내어 번역된 값을 받길 원함
-    useEffect(()=>{
-        if(translate != null){
-            axios.post('http://localhost:8080/server/translate',{textToTranslate:translate})
-            .then((response)=>{
-                console.log(JSON.stringify(response.data));
-                console.log('============================');
-                console.log(response.data);
-                let transCopy = [...response.data];
-                // setTranslate(JSON.parse(transCopy));
-            })
-            .catch(e=>{
-                console.log('/server/translate 클라이언트 post error!:'+e);
-            })
-        }
-    },[data])
+    // useEffect(()=>{
+    //     if(translate != null){
+    //         axios.post('http://localhost:8080/server/translate',{textToTranslate:translate})
+    //         .then((response)=>{
+    //             console.log(JSON.stringify(response.data));
+    //             console.log('============================');
+    //             console.log(response.data);
+    //             let transCopy = [...response.data];
+    //             // setTranslate(JSON.parse(transCopy));
+    //         })
+    //         .catch(e=>{
+    //             console.log('/server/translate 클라이언트 post error!:'+e);
+    //         })
+    //     }
+    // },[data])
 
     //input값을 저장하는 함수
     const handleChange = e=>{
