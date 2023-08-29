@@ -149,7 +149,6 @@ app.get('/server/gpt', function (req, res) {
   })
   .then(chatCompletion => {
     const result = chatCompletion.choices[0].message;
-    db.collection('chat').insertOne({result}, function(err,re))
     // chatMessages에 데이터 추가 (DB처리 필요)
     chatMessages.push(result);
     console.log('server newChatMessage:' + JSON.stringify(result));
