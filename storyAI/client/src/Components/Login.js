@@ -8,7 +8,9 @@ function Login() {
   return (
 
     <div>
-        로그인 박스 필요
+        <Nav>
+          login
+        </Nav>
     </div>
   );
 }
