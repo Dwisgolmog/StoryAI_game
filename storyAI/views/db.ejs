@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <h4>저장된 db 내용</h4>
-  <% for (let i = 0; i < db.length; i++) { %>
-    
-    <h6>Role: <%= db[i].chatMessages[0].role %></h6>
-    <h6>Content: <%= db[i].chatMessages[0].content %></h6>
-    
-  <% } %>
+    <body>
+        <h4>저장된 db 내용</h4>
+        <% for (let i = 0; i < db.length; i++) { %>
+        <h6>Entry <%= i + 1 %>:</h6>
+        <h6>Role: <%= db[i].chatMessages[0].role %></h6>
+        <h6>Content: <%= db[i].chatMessages[0].content %></h6>
+        <br>
+        <% } %>
+      </body>
 </body>
-
 </html>
-
-
