@@ -14,10 +14,10 @@ function Login() {
             setErrorMs("전부 입력해주십시오!");
         }
 
-        axios.post("http://localhost:8080/users/LogIn",{
-            username,
-            password
-        })
+        axios.post("http://localhost:8080/users/LogIn",
+            {username,password},
+            {withCredentials:true}
+            )
         .then((result)=>{
             console.log(result);
             //navigate('/')
