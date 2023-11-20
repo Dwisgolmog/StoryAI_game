@@ -32,7 +32,7 @@ function Login() {
         <div class="min-h-screen flex justify-center items-center bg-white">
             <div class="p-10 border-[1px] -mt-10 border-slate-200 rounded-md flex flex-col items-center space-y-3">
                 <div class="py-8">
-                    <img width="30" class="-mt-10" src="https://www.paypalobjects.com/images/shared/momgram@2x.png" />
+                    <img width="150" class="-mt-10" src="/img/WhiteLogo.png" />
                 </div>
                 <input onChange={(e)=>{
                     setUserName(()=>e.target.value);
