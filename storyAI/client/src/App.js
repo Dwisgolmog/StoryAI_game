@@ -7,6 +7,7 @@ import Content from './Components/conent';
 import Footer from './Components/Footer';
 import {Route, Routes} from 'react-router-dom';
 import Login from './Components/Login';
+import SingUp from './Components/SignUp';
 import Game from './page/Game';
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
           <Game></Game>
         </>} />
 
-        <Route path='/login' element={<Container fixed><Login></Login></Container>} />
+        <Route path='/login' element={<Login></Login>} />
+        <Route path='/SingUp' element={<SingUp></SingUp>} />
 
         <Route path='*' element={<div>404error! 없는 페이지 입니다.</div>} />
       </Routes>
