@@ -10,12 +10,19 @@ connectDB.connect().then((client)=>{
 //회원추가
 router.post('/SignUp',async(req,res)=>{
     try{
-        await db.collection('userInfo').insertOne({
-            email:req.body.email,
-            password:req.body.password,
-            name:req.body.name
-        })
-        res.send(200);
+        inputEmail = await db.collection('userInfo').findOne({email:req.body.email})
+        if(!inputEmail){
+            await db.collection('userInfo').insertOne({
+                email:req.body.email,
+                password:req.body.password,
+                name:req.body.name
+            })
+            // res.send(200);
+        }else{
+            res.status(409);
+            res.send({message:"아이디가 중복되었습니다!"});
+        }
+        
     }catch(e){
         console.log("/users/SignUp server 오류발생!:"+e);
     }

@@ -27,13 +27,19 @@ function SingUp() {
                 name    
             })  
             .then((result)=>{
-                console.log(result);
-                alert('회원가입 완료');
-                navigate('/login');
+                if(result.status == 200){
+                    console.log(result);
+                    alert('회원가입 완료');
+                    navigate('/login');
+                }
             })
             .catch((e)=>{
                 console.log("/SignUp 페이지 post 요청 오류");
-                console.log(e);
+                if(e.response.status == 409){
+                    alert('아이디가 중복되었습니다!');
+                }else{
+                    console.log(e);
+                }
             })
         }
     }    
