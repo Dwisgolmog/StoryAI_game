@@ -21,7 +21,7 @@ function SingUp() {
         if(!email && !password && !name){
             return setErrorMs("입력이 잘못 되었습니다!! 다시 한번 확인해주세요.");
         }else{
-            await axios.post("http://localhost:8080/Members-Management/User-SignUp",{
+            await axios.post("http://localhost:8080/users/SignUp",{
                 email,
                 password,
                 name    

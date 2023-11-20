@@ -14,7 +14,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // mongodb 연결
-let connectDB = require("./server/db.js");
+let connectDB = require("./router/db.js");
 let db;
 connectDB.connect().then((client) => {
   // MongoDB의 StoryAI DB연결
@@ -33,6 +33,9 @@ connectDB.connect().then((client) => {
 
 
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+const userRouter = require('./router/users')
+app.use('/users', userRouter)
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
@@ -122,3 +125,5 @@ app.get('/db', function (req, res) {
     res.render('db.ejs', { db: result });
   });
 });
+
+app.use('/users',require('./router/users.js'));
