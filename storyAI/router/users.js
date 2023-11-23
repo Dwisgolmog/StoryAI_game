@@ -37,29 +37,40 @@ router.use(session({
     resave : false,
     saveUninitialized : false,
     cookie : {
-        maxAge : 60 * 60 * 1000,
+        maxAge : 60*100,
         httpOnly : false,
         secure : false,
     }
 }))
 
-//로그인 검사
-router.post('/LogIn', async (req, res, next) => {
-    try {
-        console.log(req.session);
-        if (req.session.views) {
-            req.session.views++;
-        } else {
-            req.session.views = 1;
-        }
-        next();
-    } catch (error) {
-        console.log('/LogIn 에러 발생!!' + error);
-        next(error);
+router.get('',(req,res)=>{
+    try{
+        console.log('session info', req.session);
+        res.status(200).json(req.session.user.userName)
+    }catch(e){
+        console.log('get 세션 오류:'+e);
     }
-}, (req, res) => {
-    res.sendStatus(200); 
-});
+})
 
+
+//로그인 검사
+router.post('/LogIn', async (req, res) => {
+    const userInfo = await db.collection('userInfo').findOne({email:req.body.email})
+    
+    if(userInfo){
+        //session 생성
+        req.session.save(()=>{
+            req.session.user = {
+                userEmail : userInfo.email,
+                userName : userInfo.name
+            }
+            const data = req.session;
+            res.status(200).json({data});
+        })
+    }else{
+        res.status(404).send({message:"존재하지 않는 아이디"});
+    }
+
+});
 
 module.exports = router
