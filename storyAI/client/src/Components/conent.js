@@ -22,7 +22,7 @@ function Content(){
                     })
                 }
             </Grid>
-       </div>
+        </div>
     );
 }
 
