@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
     const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        // 세션을 확인하고 isLogin 값을 업데이트
+        const checkSession = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/users", { credentials: 'include' });
+
+                if (response.ok) {
+                    setIsLogin(true);
+                } else {
+                    setIsLogin(false);
+                }
+            } catch (error) {
+                console.error("세션 확인 중 오류:", error);
+            }
+        };
+
+        checkSession();
+    }, []); // []를 두어 한 번만 실행되도록 설정
 
     const handleLogoClick = () => {
         // 메인 화면으로 이동
@@ -22,7 +42,11 @@ function NavBar() {
                     <a href='/game' className="nav-link">Game Select</a>
                 </div>
                 <div className='mr-20'>
-                    <Link to='/Login' className="nav-link">Login</Link>
+                    {isLogin ? (
+                        <a href='/logout' className="nav-link">Logout</a>
+                    ) : (
+                        <Link to='/login' className="nav-link">Login</Link>
+                    )}
                 </div>
                 <div className='mr-20'>
                     <a href='/save' className="nav-link">Save</a>

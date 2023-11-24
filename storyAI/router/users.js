@@ -37,7 +37,7 @@ router.use(session({
     resave : false,
     saveUninitialized : false,
     cookie : {
-        maxAge : 60*100,
+        maxAge : 1000*100,
         httpOnly : false,
         secure : false,
     }
