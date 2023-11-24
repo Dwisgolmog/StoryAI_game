@@ -39,3 +39,17 @@ body{
 .footer{
   background-color: black;
 }
+.navLogo{
+  width:70%;
+  margin: 0 auto;
+}
+
+.nav-link {
+  color: black;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: red;
+}
