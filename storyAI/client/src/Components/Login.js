@@ -82,7 +82,7 @@ function Login() {
         <div className="min-h-screen flex justify-center items-center bg-white">
             <div className="p-10 border-[1px] -mt-10 border-slate-200 rounded-md flex flex-col items-center space-y-3">
                 <div className="py-8">
-                    <img width="150" className="-mt-10" src="/img/WhiteLogo.png" />
+                    <img onClick={()=>{navigate('/');}} width="150" className="-mt-10" src="/img/WhiteLogo.png" />
                 </div>
                 <input onChange={(e)=>{
                     setEmail(()=>e.target.value);
