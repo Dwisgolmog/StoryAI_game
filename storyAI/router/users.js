@@ -82,7 +82,7 @@ router.get('/Logout',async(req,res)=>{
     console.log('/Logout 실행');
     console.log(req.session);
     req.session.destroy(()=>{
-        res.status(200).json({message:'logout sucess'});
+        res.status(200).json({message:'logout success'});
     })
 })
 

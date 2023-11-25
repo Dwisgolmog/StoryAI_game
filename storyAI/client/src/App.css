@@ -48,6 +48,7 @@ body{
   color: black;
   transition: color 0.3s;
   font-weight: bold;
+  font-size: 2vh;
 }
 
 .nav-link:hover {
