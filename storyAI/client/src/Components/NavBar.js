@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Axios 추가
 
 function NavBar() {
     const navigate = useNavigate();
@@ -9,9 +10,9 @@ function NavBar() {
         // 세션을 확인하고 isLogin 값을 업데이트
         const checkSession = async () => {
             try {
-                const response = await fetch("http://localhost:8080/users", { credentials: 'include' });
+                const response = await axios.get("http://localhost:8080/users", { withCredentials: true });
 
-                if (response.ok) {
+                if (response.status === 200) {
                     setIsLogin(true);
                 } else {
                     setIsLogin(false);
@@ -22,12 +23,30 @@ function NavBar() {
         };
 
         checkSession();
-    }, []); // []를 두어 한 번만 실행되도록 설정
+    }, []);
 
     const handleLogoClick = () => {
         // 메인 화면으로 이동
         navigate('/');
     };
+
+    const handleLogout = async () => {
+        try {
+            console.log("로그아웃 axios 전");
+            const response = await axios.get("http://localhost:8080/users/Logout", { withCredentials: true });
+            console.log("로그아웃 axios 후", response);
+    
+            if (response.status === 200) {
+                setIsLogin(false);
+                navigate('/');
+            } else {
+                console.error("로그아웃 실패:", response.statusText);
+            }
+        } catch (error) {
+            console.error("로그아웃 중 오류:", error);
+        }
+    };
+    
 
     return (
         <div className="navLogo flex flex-col md:flex-row items-center bg-white-800 text-black p-4">
@@ -43,7 +62,7 @@ function NavBar() {
                 </div>
                 <div className='mr-20'>
                     {isLogin ? (
-                        <a href='/logout' className="nav-link">Logout</a>
+                        <Link to='/' onClick={handleLogout} className="nav-link">Logout</Link>
                     ) : (
                         <Link to='/login' className="nav-link">Login</Link>
                     )}
