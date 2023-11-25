@@ -16,7 +16,7 @@ function Footer() {
                         </div>
                         <Grid container>
                             <Grid item xs={4}>
-                                <p style={{ fontWeight: 'bolder' }}>기획,디자인</p>
+                                <p style={{ fontWeight: 'bolder' }}>디자인</p>
                                 mikyholee@naver.com
                             </Grid>
                             <Grid item xs={4}>

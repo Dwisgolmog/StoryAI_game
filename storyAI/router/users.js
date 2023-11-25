@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const connectDB = require('./db.js');
 const session = require('express-session');
-//const dotenv = require('dotenv');
+const FileStore = require('session-file-store')(session);
 
 //db 연결
 let db
@@ -36,17 +36,20 @@ router.use(session({
     secret: process.env.SESSION_SECRIT,
     resave : false,
     saveUninitialized : false,
+    store : new FileStore(),
     cookie : {
-        maxAge : 1000*100,
+        maxAge : 60 * 60 * 1000, //유지시간 1시간
         httpOnly : false,
         secure : false,
     }
 }))
 
+//get Session
 router.get('',(req,res)=>{
     try{
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
         console.log('session info', req.session);
-        res.status(200).json(req.session.user.userName)
+        res.status(200).json(req.session)
     }catch(e){
         console.log('get 세션 오류:'+e);
     }
@@ -67,10 +70,20 @@ router.post('/LogIn', async (req, res) => {
             const data = req.session;
             res.status(200).json({data});
         })
+        
     }else{
         res.status(404).send({message:"존재하지 않는 아이디"});
     }
 
 });
+
+//로그아웃(세션삭제)
+router.get('/Logout',async(req,res)=>{
+    console.log('/Logout 실행');
+    console.log(req.session);
+    req.session.destroy(()=>{
+        res.status(200).json({message:'logout sucess'});
+    })
+})
 
 module.exports = router

@@ -7,7 +7,7 @@ import { changeLoginState } from "../store";
 function Login() {
     let navigate = useNavigate();
 
-    let isLogin = useSelector((state)=> state)
+    //let isLogin = useSelector((state)=> state)
     let dispatch = useDispatch();
 
     const [errorMs,setErrorMs] = useState('');
@@ -26,8 +26,10 @@ function Login() {
             )
         .then((result)=>{
             if(result.status === 200){
+                console.log(result);
                 dispatch(changeLoginState(true));
                 alert("로그인 완료!");
+                navigate('/');
             }else{
                 
             }
@@ -42,23 +44,39 @@ function Login() {
         })
     }
 
-    const getSession = ()=>{
-        if (loading) return;
+    //로그인한 유저의 닉네임을 가져옴
+    // const getSession = ()=>{
+    //     if (loading) return;
 
-        setLoading(true); 
+    //     setLoading(true); 
 
-        axios.get("http://localhost:8080/users",
-            {withCredentials:true}
-        )
-        .then((result)=>{
-            console.log(result.data);
-            setLoading(false); 
-        })
-        .catch((e)=>{
-            console.log('get Session 요청 실패:'+e);
-            setLoading(false); 
-        })
-    }
+    //     axios.get("http://localhost:8080/users",
+    //         {withCredentials:true}
+    //     )
+    //     .then((result)=>{
+    //         console.log(result.data);
+    //         setLoading(false); 
+    //     })
+    //     .catch((e)=>{
+    //         console.log('get Session 요청 실패:'+e);
+    //         setLoading(false); 
+    //     })
+    // }
+
+    //현재 로그인된 세션을 삭제시킴
+    // const hadnleLogout = () =>{
+    //     axios.get("http://localhost:8080/users/Logout",
+    //         {withCredentials:true}
+    //     )
+    //     .then((result)=>{
+    //         dispatch(changeLoginState(false));
+    //         console.log(result.data);
+    //         alert("로그아웃이 되었습니다!");
+    //     })
+    //     .catch((e)=>{
+    //         console.log("/users/Logout post 오류발생:"+e);
+    //     })
+    // }
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-white">
@@ -79,11 +97,16 @@ function Login() {
                     {errorMs && <p className="text-red-500 font-bold">{errorMs}</p>}
                 </div>
 
-                <button onClick={()=>{
+                {/* <button onClick={()=>{
                     getSession();
                 }}>
                     Get Session
                 </button>
+                <button onClick={()=>{
+                    hadnleLogout();
+                }}>
+                    Logout
+                </button> */}
                 <div className="flex flex-col space-y-5 w-full">
                     <button onClick={()=>{
                         handleLogIn();
