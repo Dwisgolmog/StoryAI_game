@@ -77,10 +77,10 @@ app.get('/server/gpt', function (req, res) {
   }));
 
   openai.chat.completions.create({
-    model: 'ft:gpt-3.5-turbo-0613:personal::8P25lnAo',
+    model: 'ft:gpt-3.5-turbo-0613:personal::7sshVr8V',
     messages: chatMessages,
     temperature: 0.8,
-    max_tokens: 900,
+    max_tokens: 400,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,

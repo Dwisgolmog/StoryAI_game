@@ -1,9 +1,9 @@
 import { Container, padding } from "@mui/system";
 import { Box } from "@mui/system";
 import { Grid } from "@mui/material";
-import { Button,createTheme,ThemeProvider } from "@mui/material";
+import { Button,createTheme,ThemeProvider, useScrollTrigger } from "@mui/material";
 import axios from "axios";
-import { React,Fragment,useEffect,useState } from "react";
+import { React,Fragment,useEffect,useState, useRef } from "react";
 
 let theme = createTheme({});
 
@@ -23,6 +23,7 @@ function Game(){
     const[data,setData] = useState([]);
     const[inputText,setInputText] = useState();
     const[reload,setReload] = useState(0);
+    const scrollRef = useRef(null);
 
     // /server/gpt 라는 주소에 get 요청을 하여 gpt의 답변을 가져옴
     useEffect(()=>{
@@ -38,6 +39,13 @@ function Game(){
         })
     },[reload])
 
+    useEffect(() => {
+        // 스크롤이 자동으로 아래로 내려가도록 처리
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [data]);
+
     //input값을 저장하는 함수
     const handleChange = e=>{
         setInputText(e.target.value);
@@ -49,13 +57,15 @@ function Game(){
                 <Container fixed sx={{mb:7,mt:7}}>
                     <Grid container>
                         <Grid item xs={5.8}>
-                            <Box sx={{
-                            height:'35vw',
-                            bgcolor:'white',
-                            border:'2px solid gray',
-                            p:2,
-                            overflow: "hidden",
-                            overflowY: "scroll",
+                            <Box
+                                ref={scrollRef}
+                                sx={{
+                                    height:'35vw',
+                                    bgcolor:'white',
+                                    border:'2px solid gray',
+                                    p:2,
+                                    overflow: "hidden",
+                                    overflowY: "scroll",
                             }} >
                                 {
                                     data[1] != null ?
@@ -88,16 +98,18 @@ function Game(){
                     </Grid>
                     <Grid container>
                             <Grid item sx={{mt:4}} xs={8.6}>
-                                <input onChange={handleChange} style={{width:'100%',height:'5vw'}}></input>
+                                <input onChange={handleChange} style={{width:'100%',height:'5vw'}} value={inputText}></input>
                             </Grid>
                             <Grid item xs={0.4}/>
                             <Grid item sx={{mt:4}} xs={3}>
                                 {/* button을 누를시 답변을 post 요청하고 setReload로 페이지를 재랜더링함 */}
                                 <Button onClick={()=>{
+                                    setInputText('');
                                     axios.post('http://localhost:8080/server/gpt/send',{inputText:inputText})
                                     .then((response)=>{
                                         //console.log("/gpt/send response:"+JSON.stringify(response));
                                         setReload(reload+1);
+                                        setInputText('');
                                     }).catch(e=>{
                                         console.log('inputText post error=======>'+e);
                                     })
