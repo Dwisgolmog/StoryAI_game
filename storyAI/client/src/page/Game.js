@@ -67,6 +67,12 @@ function Game(){
                                     overflow: "hidden",
                                     overflowY: "scroll",
                             }} >
+                                <p>
+                                    [Main story]<br />
+                                    플레이어는 도시 중앙에 위치한 10층 건물에 있습니다. 물도 좀비로 가득 차 있습니다.
+                                    플레이어는 어젯밤에 술을 많이 마셔서 좀비 아포칼립스가 일어나는 것을 눈치채지 못했습니다.
+                                    플레이어는 다음날 사무실에서 일어났습니다.
+                                </p>
                                 {
                                     data[1] != null ?
                                         data.map((item, index) => (
