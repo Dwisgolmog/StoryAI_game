@@ -21,7 +21,7 @@ theme = createTheme(theme, {
 function Game(){
 
     const[data,setData] = useState([]);
-    const[inputText,setInputText] = useState();
+    const[inputText,setInputText] = useState('');
     const[reload,setReload] = useState(0);
     const scrollRef = useRef(null);
 
@@ -32,7 +32,7 @@ function Game(){
             console.log(result.data);
 
             let copy = [...result.data];
-            //console.log("copy:"+JSON.stringify(copy));
+            console.log("copy:"+JSON.stringify(copy));
             setData(copy);
         }).catch(e=>{
             console.log('axios 에러발생!!:'+e);
@@ -69,16 +69,24 @@ function Game(){
                             }} >
                                 {
                                     data[1] != null ?
-                                    data.map((item,index)=>(
-                                        index >=2 &&
-                                        <p key={index}>{item.content.split('\n').map((text, index) => (
-                                            <Fragment key={index}>
-                                                {text}
+                                        data.map((item, index) => (
+                                            index >= 2 &&
+                                            <div>
+                                                <p key={index}>
+                                                    {item.role === 'user' && '플레이어: '}
+                                                    {item.role === 'assistant' && '진행자: '}
+                                                    {item.content.split('\n').map((text, index) => (
+                                                        <Fragment key={index}>
+                                                            {text}
+                                                            <br />
+                                                        </Fragment>
+                                                    ))}
+                                                </p>
                                                 <br />
-                                            </Fragment>
-                                        ))}</p>
-                                    ))
-                                    : null
+                                                <br />
+                                            </div>
+                                        ))
+                                        : null
                                 }
                                 
 
