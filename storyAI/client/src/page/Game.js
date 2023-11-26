@@ -21,7 +21,6 @@ theme = createTheme(theme, {
 function Game(){
 
     const[data,setData] = useState([]);
-    const[translate,setTranslate] = useState();
     const[inputText,setInputText] = useState();
     const[reload,setReload] = useState(0);
 
@@ -32,30 +31,12 @@ function Game(){
             console.log(result.data);
 
             let copy = [...result.data];
-            console.log("copy:"+JSON.stringify(copy));
+            //console.log("copy:"+JSON.stringify(copy));
             setData(copy);
-            //setTranslate(JSON.stringify(copy)); //번역된 내용을 저장할 변수
         }).catch(e=>{
             console.log('axios 에러발생!!:'+e);
         })
     },[reload])
-
-    // data값의 변동(응답 받음)이 발생하면 translate값을 papgo api에게 post 요청하여 보내어 번역된 값을 받길 원함
-    // useEffect(()=>{
-    //     if(translate != null){
-    //         axios.post('http://localhost:8080/server/translate',{textToTranslate:translate})
-    //         .then((response)=>{
-    //             console.log(JSON.stringify(response.data));
-    //             console.log('============================');
-    //             console.log(response.data);
-    //             let transCopy = [...response.data];
-    //             // setTranslate(JSON.parse(transCopy));
-    //         })
-    //         .catch(e=>{
-    //             console.log('/server/translate 클라이언트 post error!:'+e);
-    //         })
-    //     }
-    // },[data])
 
     //input값을 저장하는 함수
     const handleChange = e=>{
@@ -87,24 +68,6 @@ function Game(){
                                             </Fragment>
                                         ))}</p>
                                     ))
-                                    // 데이터 바인딩을 하기 위한 몸부림
-
-                                    // translate.map((item, index) => (
-                                    //     <div key={index}>
-                                    //       <h3>{item['역할']}</h3>
-                                    //       <p>{item['내용']}</p>
-                                    //     </div>
-                                    //   ))
-                                    // translate[1] != null ?
-                                    // translate.map((item,index)=>(
-                                    //     index >= 2 &&
-                                    //     <p key={index}>{item.content.map((text, index) => (
-                                    //         <Fragment key={index}>
-                                    //             {text}
-                                    //             <br />
-                                    //         </Fragment>
-                                    //     ))}</p>
-                                    // ))
                                     : null
                                 }
                                 
@@ -133,7 +96,7 @@ function Game(){
                                 <Button onClick={()=>{
                                     axios.post('http://localhost:8080/server/gpt/send',{inputText:inputText})
                                     .then((response)=>{
-                                        console.log("/gpt/send response:"+JSON.stringify(response));
+                                        //console.log("/gpt/send response:"+JSON.stringify(response));
                                         setReload(reload+1);
                                     }).catch(e=>{
                                         console.log('inputText post error=======>'+e);

@@ -68,7 +68,7 @@ const openai = new OpenAI();
 app.get('/server/gpt', function (req, res) {
   // 대화 데이터의 content 추출 및 토큰화
   const conversation = chatData.map(message => message.content);
-  const tokenizedConversation = conversation.map(text => text.split(' '));
+  //const tokenizedConversation = conversation.map(text => text.split(' '));
 
   // 입력 데이터 형식 구성
   const chatMessages = chatData.map(message => ({
@@ -108,32 +108,9 @@ app.post('/server/gpt/send', function (req, res) {
     content: req.body.inputText,
   };
   chatData.push(userAnswer);
-  console.log('chatData=====================\n' + JSON.stringify(chatData) + '\n\n');
+  //새로운 chatData가 잘 나왔는지 확인
+  //console.log('chatData=====================\n' + JSON.stringify(chatData) + '\n\n');
   res.sendStatus(200);
 });
-
-// db 확인하기
-app.get('/db', function (req, res) {
-  console.log('db에 저장된 값입니다');
-  db.collection('chat').find().toArray(function (err, result) {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Internal Server Error');
-    }
-    const extractedData = result.map(entry => ({
-      _id: entry._id,
-      roles: entry.chatMessages.map(message => message.role),
-      contents: entry.chatMessages.map(message => message.content)
-    }));
-    for (let i = 0; i < result.length; i++) {
-      result[i].extractedData = extractedData[i];
-    }
-    console.log('Extracted Data:', extractedData);
-    res.render('db.ejs', { db: result });
-  });
-});
-
-
-
 
 app.use('/users',require('./router/users.js'));
