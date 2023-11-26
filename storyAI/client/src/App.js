@@ -9,6 +9,7 @@ import {Route, Routes} from 'react-router-dom';
 import Login from './Components/Login';
 import SingUp from './Components/SignUp';
 import Game from './page/Game';
+import Learn from './Components/AboutLearnUs';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 
         <Route path='/login' element={<Login></Login>} />
         <Route path='/SingUp' element={<SingUp></SingUp>} />
+        <Route path='/learn' element={<Learn></Learn>}/>
 
         <Route path='*' element={<div>404error! 없는 페이지 입니다.</div>} />
       </Routes>

@@ -54,3 +54,17 @@ body{
 .nav-link:hover {
   color: red;
 }
+
+.learn{
+  width: 100%;
+}
+.mentdiv{
+  margin-top: 100px;
+  margin-left: 300px;
+}
+
+.ment{
+  color: black;
+  font-size: 28px;
+  font-weight: bold;
+}

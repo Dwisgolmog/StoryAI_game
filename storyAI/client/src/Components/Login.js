@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeLoginState } from "../store";
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
     const [errorMs,setErrorMs] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     const handleLogIn = ()=>{
         if(!email && !password){
@@ -36,7 +36,7 @@ function Login() {
         })
         .catch((e)=>{
             console.log("/User-logIn post 요류 발생!");
-            if(e.response.status == 404){
+            if(e.response.status === 404){
                 alert("아이디 또는 비밀번호가 틀립니다!");
             }else{
                 console.log(e);
