@@ -21,7 +21,12 @@
 // }
 
 // uploadFineTuningData();
-// 1
+
+// const OpenAI = require('openai');
+// const fs = require('fs')
+// const openai = new OpenAI();
+
+// 1 파일 업로드
 // async function uploadFile() {
 //   try {
 //     const response = await openai.files.create({
@@ -37,12 +42,28 @@
 // }
 // uploadFile();
 
-//2
-// const fineTune = openai.fineTunes.create({
-//   training_file: 'file-HTvqZIz0wo1JZnBy919a6423',
-//   model: 'gpt-3.5-turbo-0613'
-// });
 
+//2 미세조정 gpt 생성
+// const fineTune = openai.fineTuning.jobs.create({
+//     training_file: 'file-DTqMux2jfd0pmAb0n8QVRU8U',  //파일 업로드시 나온 file id 입력
+//     model: 'gpt-3.5-turbo-0613'
+//   });
+  
+//   const headers={
+//     'content-type': 'application/json',
+//     Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+//   };
+//   fetch('https://api.openai.com/v1/fine_tuning/jobs',{
+//     method: 'POST',
+//     headers: headers,
+//     body : JSON.stringify(fineTune),
+//   }).then((response)=>response.json()).then((data)=>{
+//     console.log('Response: ',data);
+//   }).catch((error)=>{
+//     console.error('error: ', error);
+//   })
+
+// ===========================================================
 // fineTune.then(result => {
 //   console.log(result); // 작업 결과 확인
 // }).catch(error => {
