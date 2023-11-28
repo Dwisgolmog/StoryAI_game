@@ -52,7 +52,16 @@ function Game(){
     }
 
     return(
-        <>
+        <div className='bg-cover bg-center'
+        style={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            height: '100vh',
+            backgroundImage: 'url("/img/bg2.jpeg")',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+        }}>
             <ThemeProvider theme={theme}>
                 <Container fixed sx={{mb:7,mt:7}}>
                     <Grid container>
@@ -136,7 +145,7 @@ function Game(){
 
                 </Container>
             </ThemeProvider>    
-        </>
+        </div>
     );
 }
 

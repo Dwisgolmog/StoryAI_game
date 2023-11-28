@@ -2,10 +2,11 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function NavBar() {
+function NavBar(props) {
     const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(false);
     const [userName, setUserName] = useState('');
+    const navColor = props.bgColor;
 
     const fetchLoginStatus = useCallback(async () => {
         try {
@@ -49,11 +50,10 @@ const handleLogout = async () => {
     }
 };
 
-
     return (
-        <div className="navLogo flex items-center bg-white-800 text-black p-4">
+        <div className={`navLogo flex items-center bg-${navColor === 'black' ? 'white-800':'black'} text-${navColor} p-4`}>
             <div className="flex items-center" onClick={handleLogoClick}>
-                <img src='/img/WhiteLogo.png' className="w-29 h-16" alt="Logo" />
+                <img src={navColor === 'black' ? '/img/WhiteLogo.png' : '/img/WhiteLogo2.png'} className="w-29 h-16" alt="Logo" />
             </div>
             <div className="flex ml-40">
                 <div className='mr-20'>
