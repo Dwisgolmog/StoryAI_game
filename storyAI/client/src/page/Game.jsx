@@ -4,6 +4,8 @@ import { Grid } from "@mui/material";
 import { Button,createTheme,ThemeProvider, useScrollTrigger } from "@mui/material";
 import axios from "axios";
 import { React,Fragment,useEffect,useState, useRef } from "react";
+import { Canvas } from 'react-three-fiber';
+import ThreeDmodel from '../Components/threeDmodel';
 
 let theme = createTheme({});
 
@@ -115,7 +117,11 @@ function Game(){
                                 border: '2px solid gray'
                             }}>
                                 {/* 이미지 더미 수정 요망 */}
-                                <img src="/img/contentimg2.png" style={{textAlign:'center',width:'100%',height:'100%'}}></img>
+                                <Canvas>
+                                    <ambientLight intensity={0.5}/>
+                                    <spotLight position={[10,10,10]} angle={0.15} penumbra={1}/>
+                                    <ThreeDmodel/>
+                                </Canvas>
                             </Box>
                         </Grid>
                     </Grid>

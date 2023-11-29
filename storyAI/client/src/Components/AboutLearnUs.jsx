@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
+import { Canvas } from 'react-three-fiber';
+import ThreeDmodel from './threeDmodel';
 
 function Learn() {
     const [displayText, setDisplayText] = useState('');
@@ -54,6 +56,11 @@ function Learn() {
                     backgroundRepeat: 'no-repeat',
                 }}
             >
+                <Canvas>
+                    <ambientLight intensity={0.5}/>
+                    <spotLight position={[10,10,10]} angle={0.15} penumbra={1}/>
+                    <ThreeDmodel/>
+                </Canvas>
                 <div className='mentdiv' style={{width:'300px',height:'100px'}}>
                     <p className='ment'>{displayText}</p>
                 </div>
