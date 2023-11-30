@@ -111,18 +111,9 @@ function Game(){
                         </Grid>
                         <Grid item xs={0.4} />
                         <Grid item xs={5.8}>
-                            <Box sx={{
-                                height: '35vw',
-                                bgcolor: 'white',
-                                border: '2px solid gray'
-                            }}>
-                                {/* 이미지 더미 수정 요망 */}
-                                <Canvas>
-                                    <ambientLight intensity={0.5}/>
-                                    <spotLight position={[10,10,10]} angle={0.15} penumbra={1}/>
-                                    <ThreeDmodel/>
+                                <Canvas camera={{near: 1,far: 100, position : [5,0,7]}}>
+                                    <ThreeDmodel />
                                 </Canvas>
-                            </Box>
                         </Grid>
                     </Grid>
                     <Grid container>
