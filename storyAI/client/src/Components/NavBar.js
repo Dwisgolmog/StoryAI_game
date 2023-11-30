@@ -34,24 +34,24 @@ function NavBar(props) {
     };
 
     // 클라이언트에서 로그아웃 성공 시 상태 업데이트 코드
-const handleLogout = async () => {
-    try {
-        const response = await axios.get("http://localhost:8080/users/logout", { withCredentials: false });
+    const handleLogout = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/users/logout", { withCredentials: false });
 
-        if (response.data && response.data.message === 'logout success') {
-            setIsLogin(false);
-            setUserName(''); // 사용자 이름 초기화
-            console.log("logout~");
-        } else {
-            console.error("로그아웃 실패: 사용자 정보가 남아 있음");
+            if (response.data && response.data.message === 'logout success') {
+                setIsLogin(false);
+                setUserName(''); // 사용자 이름 초기화
+                console.log("logout~");
+            } else {
+                console.error("로그아웃 실패: 사용자 정보가 남아 있음");
+            }
+        } catch (error) {
+            console.error("로그아웃 중 오류:", error);
         }
-    } catch (error) {
-        console.error("로그아웃 중 오류:", error);
-    }
-};
+    };
 
     return (
-        <div className={`navLogo flex items-center bg-${navColor === 'black' ? 'white-800':'black'} text-${navColor} p-4`}>
+        <div className={`navLogo flex items-center ${navColor === 'black' ? 'bg-white-800':'bg-black'} text-${navColor} p-4`}>
             <div className="flex items-center" onClick={handleLogoClick}>
                 <img src={navColor === 'black' ? '/img/WhiteLogo.png' : '/img/WhiteLogo2.png'} className="w-29 h-16" alt="Logo" />
             </div>
