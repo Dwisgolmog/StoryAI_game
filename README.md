@@ -47,7 +47,14 @@
   <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 </div>
 
-## 구현
+## 구현 방법
+
+<div>
+  <img src="https://github.com/Dwisgolmog/StoryAI_game/assets/95118426/055ee2d5-3476-4c92-a8db-3e0a68587f43">  
+</div>
+
+## 시현
+
 ### 로그인 및 회원가입
 <img width="1000px" src="https://github.com/Dwisgolmog/StoryAI_game/assets/95118426/333b6235-953c-4535-83d8-e730f1e622e9">
 
