@@ -38,13 +38,13 @@
   <img src="https://img.shields.io/badge/nodedotjs-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
   <img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white">
   <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white">
-  <img src="https://img.shields.io/badge/github-#181717?style=for-the-badge&logo=github&logoColor=white">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
   <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 </div>
 
 ## 구현
 ### 로그인 및 회원가입
-<img src="https://github.com/sw-hackathon-team-41/client/assets/95118426/60d330a3-309a-4dff-821a-8e2cd19cfe69">
+<img width="800px" src="https://github.com/sw-hackathon-team-41/client/assets/95118426/60d330a3-309a-4dff-821a-8e2cd19cfe69">
 
 ### 게임 화면
-<img src="https://github.com/sw-hackathon-team-41/client/assets/95118426/e779390c-47b7-4796-8131-8cdc12e5660a">
+<img width="1000px" src="https://github.com/sw-hackathon-team-41/client/assets/95118426/e779390c-47b7-4796-8131-8cdc12e5660a">
