@@ -1,8 +1,12 @@
 # TEAM:중립
 > ChatGPT를 이용한 스토리 진행형 게임!
+> 
 ## Introduce Project
+<img src="https://github.com/Dwisgolmog/StoryAI_game/assets/95118426/952787b8-4bba-4d89-8e66-c7370f71b5ee">
+
 ### StoryAI
 > **_기획 배경_**
+> 
 >  ChatGPT를 이용한 동화책 만들기와 같은 창작이 가능하다는 사실을 알게 되었고 이를 게임과 접목을 시키면 좋을 것 같다는 생각을 했습니다.
 >  특히 인터랙티브 픽션과 같은 텍스트 게임의 경우 개발자가 미리 설정해둔 엔딩의 갯수만큼 결과가 정해져 있지만 이를 ChatGPT에 접목하여
 >  정해진 엔딩이 없는 항상 새로운 엔딩을 보는것이 가능하다고 생각하여 시작하게 되었습니다.
@@ -18,10 +22,11 @@
 - 2023.11.17 ~ 2023.11.30
 
 ## 팀원
-| 이름   | 개인 깃허브                                     | 담당 역할 및 기능                                                                                                                                          |
+| 이름   | 개인 깃허브,이메일 주소                                     | 담당 역할 및 기능                                                                                                                                          |
 | ------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 김동현 | [Dwisgolmog](https://github.com/Dwisgolmog) | <img src="https://img.shields.io/badge/developer-blue?style=flat"> 개발자                                                                                           |
 | 김석준 | [dnwn1211](https://github.com/dnwn1211)           | <img src="https://img.shields.io/badge/developer-blue?style=flat"> 개발자               |                                                      |
+| 이  호 |   mikyholee@naver.com         | 로고 제작 및 이미지 생성               |                                                      |
 
 ## 기술스택 및 개발환경
 
@@ -44,7 +49,8 @@
 
 ## 구현
 ### 로그인 및 회원가입
-<img width="800px" src="https://github.com/sw-hackathon-team-41/client/assets/95118426/60d330a3-309a-4dff-821a-8e2cd19cfe69">
+<img width="1000px" src="https://github.com/Dwisgolmog/StoryAI_game/assets/95118426/333b6235-953c-4535-83d8-e730f1e622e9">
+
 
 ### 게임 화면
-<img width="1000px" src="https://github.com/sw-hackathon-team-41/client/assets/95118426/e779390c-47b7-4796-8131-8cdc12e5660a">
+<img width="1000px" src="https://github.com/Dwisgolmog/StoryAI_game/assets/95118426/f2732b2e-05d1-4c7e-8a7b-77224ead658d">
